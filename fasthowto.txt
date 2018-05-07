@@ -1,0 +1,34 @@
+===git
+echo "# symfony-auctions" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/lehronn/symfony-auctions.git
+git push -u origin master
+
+===symfony instalacja installer i odpalanie serwera
+
+symfony new nazwa-projektu 3.4 tworzy nowy projekt za pomocą symfony installera
+trzeba ściągną symfony installer, stworzy plik bat i wrzuci symfony i symfony.bat do zmiennej środowiskowej
+
+php bin/console server:start uruchamia serwer w tle.
+php bin/console server:run uruchamia w konsoli więc wystarczy ctrl+c by zatrzyma serwer.
+
+domyślnie serwer uruchamia się pod adresem http://localhost:8000.
+
+
+===twig
+{{ }} wstawianie wartości zmiennych
+{% block komponent %} {% endblock %} istrukcje sterujące IF FOR itd albo wstawianie komponentów o danej nazwie.
+{% extends %} dziedziczenie
+
+%kernel.project_dir% - to parametr trzymający ścieżkę naszego projektu.
+
+
+===Doctrine
+bin/console doctrine:database:create tworzy nową bazę danych
+pod windowsem przed bin trzeba uży komeny php!
+php bin/console doc:dat:cr <- skrót do tworzenia nowej bazy danych.
+
+php bin/console doctrine:generate:entity - tworzy klasę z encją (czyli tworzy jakby tabelę w baze danych).
+php bin/console doctrine:schema:create -  tworzy tabele w bazie danych na podstawie klas z encją.
