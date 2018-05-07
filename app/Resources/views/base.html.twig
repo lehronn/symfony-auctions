@@ -10,8 +10,23 @@
     </head>
     <body>
         <div class="container">
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{url("auction_index")}}">Auctions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{url("auction_add")}}">Add auctions</a>
+                </li>
+            </ul>
+        </div>
+        <hr />
+        <div class="container">
             {% block body %}{% endblock %}
             {% block javascripts %}{% endblock %}
+        </div>
+        <hr />
+        <div class="container">
+            <p class="text-center">Copyright 2018</p>
         </div>
     </body>
 </html>
