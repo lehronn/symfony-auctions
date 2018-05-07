@@ -11,7 +11,8 @@
 			<hr />
 			Price now: {{ auction.price }}zł.
 			<p>Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</p>
-			<a href="{{ url("auction_details", {"id": auction.id}) }}" class="btn btn-outline-primary">Go to the details</a>
+			<a href="{{ url("auction_details", {"id": auction.id}) }}" class="btn btn-outline-primary">Details</a>
+
 		</div>
 
 

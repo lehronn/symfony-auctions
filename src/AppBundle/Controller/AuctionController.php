@@ -42,7 +42,6 @@ class AuctionController extends Controller
 	*
 	* @return Response
 	*/
-
 	public function addAction(Request $request) //request zawiera wszystko co przychodzi z metody POST.
 	{
 		$auction = new Auction(); //nowy obiekt aukcji.
@@ -62,10 +61,37 @@ class AuctionController extends Controller
 			$entityManager->persist($auction); //zapisz obiekt $auction.
 			$entityManager->flush(); //zapis do bazy danych.
 
-			return $this->redirectToRoute("auction_index"); //po zapisie danych z formularza przekierowanie na stronę z aukcjami.
+			return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]); //po zapisie danych z formularza przekierowanie na stronę ze szczegółami aukcji po ID.
 		}
 
 
 		return $this->render("Auction/add.html.twig", ["form" => $form->createView()]);
+	}
+
+	/**
+	* @Route("/auction/edit/{id}", name="auction_edit")
+	*
+	* @param Request $request
+	* @param Auction $auction
+	*
+	* @return Response
+	*/
+	public function editAction(Request $request, Auction $auction)
+	{
+		$form= $this->createForm(AuctionType::class, $auction);
+
+		if($request->isMethod("post")) {
+			$form->handleRequest($request);
+
+			$auction->setUpdatedAt(new \DateTime());
+
+			$entityManager = $this->getDoctrine()->getManager();
+			// $entityManager = persist($auction); z tą linijką nie działa.
+			$entityManager->flush();
+
+			return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]);
+		}
+
+		return $this->render("Auction/edit.html.twig", ["form" => $form->createView()]);
 	}
 }

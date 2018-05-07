@@ -43,3 +43,7 @@ php bin/console doc:dat:cr <- skrót do tworzenia nowej bazy danych.
 php bin/console doctrine:generate:entity - tworzy klasę z encją (czyli tworzy jakby tabelę w baze danych).
 php bin/console doctrine:schema:create -  tworzy tabele w bazie danych na podstawie klas z encją.
 php bin/console doctrine:schema:update -  aktualizuje tabele w bazie danych na podstawie zmian w klasach z encją. trzema wymusza taką zmianę --force lub --dump-sql żeby wyplu w konsoli zmiany
+
+
+
+OGARNĄĆ JAK DZIAĄ PARAM CONVERTER
