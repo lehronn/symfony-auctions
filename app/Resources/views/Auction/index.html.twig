@@ -6,10 +6,20 @@
 	<div class="card">
 		<h5 class="card-header"><a href="{{ url("auction_details", {"id": auction.id}) }}">{{ auction.title }}</a></h5>
 		<div class="card-body">
+			<p class="card-text"></p>
 			<p class="card-text">{{ auction.description }}</p>
-			<p>Price: {{ auction.price }}</p>
+			<hr />
+			Price now: {{ auction.price }}zł.
+			<p>Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</p>
 			<a href="{{ url("auction_details", {"id": auction.id}) }}" class="btn btn-outline-primary">Go to the details</a>
 		</div>
+
+
+
+
+	{% else %}
+	<div class="card">
+		<h5 class="card-header">No found any auctions.</h5>
 	</div>
 	{% endfor %}
 

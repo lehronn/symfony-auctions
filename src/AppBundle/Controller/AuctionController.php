@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\AuctionType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 
 class AuctionController extends Controller
 {
@@ -51,6 +52,10 @@ class AuctionController extends Controller
 		if($request->isMethod("post"))
 		{
 			$form->handleRequest($request); //to co przyszło przez $request z POST zostaje wstawione do formularza
+
+			$auction->setUpdatedAt(new \DateTime());
+			$auction->setCreatedAt(new \DateTime());
+			$auction->setStatus(Auction::STATUS_ACTIVE);
 
 			//zapis danych
 			$entityManager = $this->getDoctrine()->getManager();

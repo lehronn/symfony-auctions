@@ -26,6 +26,9 @@ domyślnie serwer uruchamia się pod adresem http://localhost:8000.
 
 {{ asset('favicon.ico') }} - wyszukuje i podaje adres pliku w katalogu projektu.
 
+jeśli chcesz wyświetliś zmienną innego typu niż string czy number musisz go przekonwertowac:
+<p>Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</p>
+
 jeżeli chcesz automatycznie importowa style formularzy z bootstrapa 4 do każdego formularza zbudowanego formbuilderem musisz edytowa plik app/config/config.yml
 dodając:
 twig:

@@ -244,7 +244,7 @@ class Auction
      */
     public function setExpiresAt(\DateTime $expiresAt)
     {
-        $this->updatedAt = $expiresAt;
+        $this->expiresAt = $expiresAt;
 
         return $this;
     }
