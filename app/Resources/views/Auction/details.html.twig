@@ -17,9 +17,18 @@
 			<hr />
 			<p>auction ID: {{ auction.id }}</p>
 			<p>Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</p>
-			<a href="{{ url('auction_index') }}" class="btn btn-primary">Back</a>
-			{{ form(deleteForm) }}
-			{{ form(finishForm) }}
+			<a href="{{ url('auction_index') }}" class="btn btn-primary float-left">Back</a>
+			<a href="{{ url('auction_edit', {id: auction.id}) }}" class="btn btn-info float-left">Edit</a>
+			{{ form_start (deleteForm, {"attr": {"class":"float-left"}}) }}
+				{{ form_widget(deleteForm.submit, {"attr": {"class":"btn-danger"}}) }}
+				{{form_rest(deleteForm) }}
+			{{ form_end (deleteForm) }}
+
+			{{ form_start (finishForm, {"attr": {"class":"float-left"}}) }}
+				{{ form_widget(finishForm.submit, {"attr": {"class":"btn-warning"}}) }}
+				{{form_rest(finishForm) }}
+			{{ form_end (finishForm) }}
+			<div class=clearfix></div>
 		</div>
 	</div>
 
