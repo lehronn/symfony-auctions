@@ -52,8 +52,6 @@ class AuctionController extends Controller
 		{
 			$form->handleRequest($request); //to co przyszło przez $request z POST zostaje wstawione do formularza
 
-			$auction->setUpdatedAt(new \DateTime());
-			$auction->setCreatedAt(new \DateTime());
 			$auction->setStatus(Auction::STATUS_ACTIVE);
 
 			//zapis danych
@@ -82,8 +80,6 @@ class AuctionController extends Controller
 
 		if($request->isMethod("post")) {
 			$form->handleRequest($request);
-
-			$auction->setUpdatedAt(new \DateTime());
 
 			$entityManager = $this->getDoctrine()->getManager();
 			// $entityManager = persist($auction); z tą linijką nie działa.

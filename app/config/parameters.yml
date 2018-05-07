@@ -5,5 +5,4 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: f2de7cc5ce024f80b8e7fe6683f78918f8965562
-
     database_path: '%kernel.project_dir%/var/data/data.sqlite'
