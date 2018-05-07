@@ -12,6 +12,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Auction
 {
+    const STATUS_ACTIVE = "active";
+    const STATUS_FINISHED = "finished";
+    const STATUS_CANCELLED = "cancelled";
+
     /**
      * @var int
      *
@@ -36,12 +40,46 @@ class Auction
     private $description;
 
     /**
-     * @var string
+     * @var float
      *
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
      */
     private $price;
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="starting_price", type="decimal", precision=10, scale=2)
+     */
+    private $startingPrice;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updated_at", type="datetime")
+     */
+    private $updatedAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="expires_at", type="datetime")
+     */
+    private $expiresAt;
+
+    /**
+     * @var String
+     *
+     * @ORM\Column(name="status", type="string", length=10)
+     */
+    private $status;
 
     /**
      * Get id
@@ -124,5 +162,124 @@ class Auction
     {
         return $this->price;
     }
-}
 
+    /**
+     * Set starting_price
+     *
+     * @param float $price
+     *
+     * @return Auction
+     */
+    public function setStartingPrice($startingPrice)
+    {
+        $this->startingPrice = $startingPrice;
+
+        return $this;
+    }
+
+    /**
+     * Get starting_price
+     *
+     * @return float
+     */
+    public function getStartingPrice()
+    {
+        return $this->startingPrice;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return $this
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set update_at
+     *
+     * @param \DateTime $updatedAt
+     *
+     * @return $this
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * Get update_at
+     *
+     * @return \DateTime
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set expires_at
+     *
+     * @param \DateTime $expiresAt
+     *
+     * @return $this
+     */
+    public function setExpiresAt(\DateTime $expiresAt)
+    {
+        $this->updatedAt = $expiresAt;
+
+        return $this;
+    }
+
+    /**
+     * Get expires_at
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}

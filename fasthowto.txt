@@ -26,6 +26,11 @@ domyślnie serwer uruchamia się pod adresem http://localhost:8000.
 
 {{ asset('favicon.ico') }} - wyszukuje i podaje adres pliku w katalogu projektu.
 
+jeżeli chcesz automatycznie importowa style formularzy z bootstrapa 4 do każdego formularza zbudowanego formbuilderem musisz edytowa plik app/config/config.yml
+dodając:
+twig:
+    form_themes: ['bootstrap_4_layout.html.twig']
+
 
 ===Doctrine
 bin/console doctrine:database:create tworzy nową bazę danych
@@ -34,3 +39,4 @@ php bin/console doc:dat:cr <- skrót do tworzenia nowej bazy danych.
 
 php bin/console doctrine:generate:entity - tworzy klasę z encją (czyli tworzy jakby tabelę w baze danych).
 php bin/console doctrine:schema:create -  tworzy tabele w bazie danych na podstawie klas z encją.
+php bin/console doctrine:schema:update -  aktualizuje tabele w bazie danych na podstawie zmian w klasach z encją. trzema wymusza taką zmianę --force lub --dump-sql żeby wyplu w konsoli zmiany
