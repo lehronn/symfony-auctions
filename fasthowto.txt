@@ -24,6 +24,8 @@ domyślnie serwer uruchamia się pod adresem http://localhost:8000.
 
 %kernel.project_dir% - to parametr trzymający ścieżkę naszego projektu.
 
+{{ asset('favicon.ico') }} - wyszukuje i podaje adres pliku w katalogu projektu.
+
 
 ===Doctrine
 bin/console doctrine:database:create tworzy nową bazę danych
