@@ -6,6 +6,7 @@
 		<h5 class="card-header">{{ auction.title }}</h5>
 		<div class="card-body">
 			<p class="card-text">
+				<h5>Auction</h5>
 				<ul>
 					<li class="list-group-item">auction ID: {{ auction.id }}</li>
 					<li class="list-group-item">Price now: {{ auction.price }}zł.</li>
@@ -34,15 +35,16 @@
 				{{form_rest(buyForm) }}
 			{{ form_end (buyForm) }}
 			<div class=clearfix></div>
-
+			<h5>Call</h5>
 			{{ form(bidForm) }}
+
+			<h5>Offers</h5>
+				<ul>
+					{% for offer in auction .offers %}
+						<li class="list-group-item">Offer price: {{offer.price}}zł, date: {{offer.createdAt |  date("d.m.Y H:i") }}.  </li>
+					{% endfor %}
+				</ul>
 		</div>
 	</div>
-
-
-
-
-
-
 
 {% endblock %}
