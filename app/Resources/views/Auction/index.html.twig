@@ -6,11 +6,12 @@
 	<div class="card">
 		<h5 class="card-header"><a href="{{ url("auction_details", {"id": auction.id}) }}">{{ auction.title }}</a></h5>
 		<div class="card-body">
-			<p class="card-text"></p>
-			<p class="card-text">{{ auction.description }}</p>
-			<hr />
-			Price now: {{ auction.price }}zł.
-			<p>Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</p>
+			<p class="card-text">
+				<ul>
+					<li class="list-group-item"><strong>Lastest price: {{ auction.price }}zł.</strong></li>
+					<li class="list-group-item">Auction expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
+				</ul>
+			</p>
 			<a href="{{ url("auction_details", {"id": auction.id}) }}" class="btn btn-outline-primary">Details</a>
 		</div>
 

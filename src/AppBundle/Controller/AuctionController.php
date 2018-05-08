@@ -21,7 +21,7 @@ class AuctionController extends Controller
 	public function indexAction()
 	{
 		$entityManager = $this->getDoctrine()->getManager();
-		$auctions = $entityManager->getRepository(Auction::class)->findAll(); //pobiera wszystkie dane z bazy danych sqlite przez Doctrine.
+		$auctions = $entityManager->getRepository(Auction::class)->findBy(["status" => Auction::STATUS_ACTIVE]); //pobieraaktywne aukcje z bazy danych sqlite przez Doctrine.
 
 		return $this->render("Auction/index.html.twig", ["auctions" => $auctions]);
 	}
@@ -35,6 +35,11 @@ class AuctionController extends Controller
 	*/
 	public function detailsAction(Auction $auction)
 	{
+		if ($auction->getStatus() === Auction::STATUS_FINISHED)
+		{
+			return $this->render("Auction/finished.html.twig", ["auction" => $auction]);
+		}
+
 		$deleteForm = $this->createFormBuilder()
 		->setAction($this->generateUrl("auction_delete", ["id" => $auction->getId()]))
 		->setMethod(Request::METHOD_DELETE)

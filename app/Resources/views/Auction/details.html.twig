@@ -5,18 +5,18 @@
 	<div class="card">
 		<h5 class="card-header">{{ auction.title }}</h5>
 		<div class="card-body">
-			<p class="card-text"></p>
-			<h6>Description:</h6>
-			<p class="card-text">{{ auction.description }}</p>
-			<hr />
-			<h6>Price:</h6>
-			<p>
-				Starting: {{ auction.startingPrice }}zł. <br/>
-				Price now: {{ auction.price }}zł.
+			<p class="card-text">
+				<ul>
+					<li class="list-group-item">auction ID: {{ auction.id }}</li>
+					<li class="list-group-item">Price now: {{ auction.price }}zł.</li>
+					<li class="list-group-item">Starting price: {{ auction.startingPrice }}zł.</li>
+					<li class="list-group-item">Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
+					<li class="list-group-item">
+						<h6>Description:</h6>
+						<p class="card-text">{{ auction.description }}</p>
+					</li>
+				</ul>
 			</p>
-			<hr />
-			<p>auction ID: {{ auction.id }}</p>
-			<p>Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</p>
 			<a href="{{ url('auction_index') }}" class="btn btn-primary float-left">Back</a>
 			<a href="{{ url('auction_edit', {id: auction.id}) }}" class="btn btn-info float-left">Edit</a>
 			{{ form_start (deleteForm, {"attr": {"class":"float-left"}}) }}

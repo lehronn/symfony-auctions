@@ -24,7 +24,9 @@ class OfferController extends Controller
             ->setType(Offer::TYPE_BUY) //ustaw typ nowej oferty na buy z encji Entity/Offer.php
             ->setPrice($auction->getPrice());
 
-        $auction->setStatus(Auction::STATUS_FINISHED);
+        $auction
+            ->setStatus(Auction::STATUS_FINISHED)
+            ->setExpiresAt(new \DateTime());
 
         $entityManager =  $this->getDoctrine()->getManager();
         $entityManager->persist($auction);

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Details of finished auction:</h1>
+	<div class="card">
+		<h5 class="card-header">{{ auction.title }}</h5>
+		<div class="card-body">
+			<p class="card-text">
+                <ul>
+                    <li class="list-group-item">auction ID: {{ auction.id }}</li>
+                    <li class="list-group-item">Lastest price: {{ auction.price }}zł.</li>
+                    <li class="list-group-item">Starting price: {{ auction.startingPrice }}zł.</li>
+                    <li class="list-group-item"><strong>Auction expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</strong></li>
+                    <li class="list-group-item">
+                        <h6>Description:</h6>
+            			<p class="card-text">{{ auction.description }}</p>
+                    </li>
+                </ul>
+            </p>
+            <a href="{{ url('auction_index') }}" class="btn btn-primary float-left">Back</a>
+		</div>
+	</div>
+
+
+
+
+
+
+
+{% endblock %}
