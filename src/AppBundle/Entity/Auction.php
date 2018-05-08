@@ -85,6 +85,21 @@ class Auction
     private $status;
 
     /**
+     * @var Offer[]
+     *
+     * @ORM\OneToMany(targetEntity="Offer", mappedBy="auction")
+     */
+    private $offers;
+
+    /**
+     * Auction constructor.
+     */
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
+
+    /**
      * Get id
      *
      * @return int
@@ -284,5 +299,24 @@ class Auction
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * @return Offer[]|ArrayCollection
+     */
+    public function getOffers()
+    {
+        return $this->offers;
+    }
+
+    /**
+     * @param Offer $offer
+     * @return $this
+     */
+    public function addOffer(Offer $offer)
+    {
+        $this->offers[] = $offer;
+
+        return $this;
     }
 }
