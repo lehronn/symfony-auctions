@@ -15,7 +15,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 //klasa tworząca formularz dodawania aukcji.
 class AuctionType extends AbstractType
 {
-
+	
+	/**
+	* @param FormBuilderInterface $builder
+	* @param array                $options
+	*/
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
 		$builder
@@ -27,6 +31,9 @@ class AuctionType extends AbstractType
 			->add("submit", SubmitType::class, ["label"=>"Dodaj"]);
 	}
 
+	/**
+    * @param OptionsResolver $resolver
+    */
 	public function configureOptions(OptionsResolver $resolver)
 	{
 		$resolver->setDefaults(["data_class" => Auction::class]); //definiujemy domyśly rodzaj danych, należy dane wstawić do obiektu $Auction w encji Auction

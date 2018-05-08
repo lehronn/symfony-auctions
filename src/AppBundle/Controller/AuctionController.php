@@ -8,8 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use AppBundle\Form\AuctionType;
+use AppBundle\Form\BidType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use AppBundle\Service\DateService;
 
 class AuctionController extends Controller
 {
@@ -56,13 +58,21 @@ class AuctionController extends Controller
 		->add("submit", SubmitType::class, ["label" => "Buy"])
 		->getForm();
 
+		$bidForm = $this->createForm
+		(
+            BidType::class,
+            null,
+            ["action" => $this->generateUrl("offer_bid", ["id" => $auction->getId()])]
+		);
+
 		return $this->render(
 			"Auction/details.html.twig",
 			[
 				"auction" => $auction,
 				"deleteForm" => $deleteForm->createView(),
 				"finishForm" => $finishForm->createView(),
-				"buyForm" => $buyForm->createView()
+				"buyForm" => $buyForm->createView(),
+				"bidForm" => $bidForm->createView(),
 		]
 		);
 	}
