@@ -108,7 +108,7 @@ class Auction
     /**
      * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User", inversedBy="auction") //wiele aukcji do jednego użytkownika, odwócone polem auctions.
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="auctions") //wiele aukcji do jednego użytkownika, odwócone polem auctions.
      */
     private $owner;
 

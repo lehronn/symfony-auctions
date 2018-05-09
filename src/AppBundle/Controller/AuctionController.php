@@ -85,6 +85,8 @@ class AuctionController extends Controller
 	*/
 	public function addAction(Request $request) //request zawiera wszystko co przychodzi z metody POST.
 	{
+		$this->denyAccessUnlessGranted("ROLE_USER"); //przekierowuje na formularz logowania jeżeli nie jesteś zalogowany
+
 		$auction = new Auction(); //nowy obiekt aukcji.
 
 		$form = $this->createForm(AuctionType::class, $auction); //tworzymy formularz typu AuctionType z AppBundle/Form i używamy encji $auction
@@ -101,7 +103,9 @@ class AuctionController extends Controller
 
 			if($form->isValid())
 			{
-				$auction->setStatus(Auction::STATUS_ACTIVE);
+				$auction
+					->setStatus(Auction::STATUS_ACTIVE)
+					->setOwner($this->getUser()); //ustawia właściciela aukcji na pobranego getUser() czyli tego usera któy jest teraz zalogowany.
 
 				//zapis danych
 				$entityManager = $this->getDoctrine()->getManager();
