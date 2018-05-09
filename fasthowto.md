@@ -82,4 +82,14 @@ php bin/console doctrine:schema:create #tworzy tabele w bazie danych na podstawi
 php bin/console doctrine:schema:update #aktualizuje tabele w bazie danych na podstawie zmian w klasach z encją. trzeba wymuszać taką zmianę --force lub --dump-sql żeby wypluło w konsoli zmiany.
 ```
 
+##Instalacja FOSUserBundle
+Patrz uważnie jakie wersje biblioteki instalujesz i czy dokumentacja też dotyczy tej wersji bo na stronie Symfony z jakiegoś powodu pokazują dokumentację z 1.3 a nie 2.
+
+Gdyby były problemy z user-emailem to przepisz z filmiku config, bo w online dokumentacji brakuje tej konfiguracji.
+Gdyby były problemy z nieznanym csrf to też przepisz config z filmiku, różni się tylko nazwą.
+
+Gdyby był problem z nieznalezioną encją zamień w pliku User.php import na:
+""FOS\UserBundle\Model\User"" i tak dalej reszta jest ok...as baseUser czy coś takiego
+
+
 OGARNĄĆ JAK DZIAŁA PARAM CONVERTER
