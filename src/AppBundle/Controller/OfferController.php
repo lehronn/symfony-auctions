@@ -58,13 +58,11 @@ class OfferController extends Controller
         if ($bidForm->isValid())
         {
             $entityManager = $this->getDoctrine()->getManager();
-
             $lastOffer = $entityManager
                 ->getRepository(Offer::class)
                 ->findOneBy(["auction" => $auction], ["createdAt" => "DESC"]); // pole po którym szukamy => pole po którym sortujemy i kierunek sortowania w wartości
 
-            if (isset($lastOffer)) //jeśli istnieje poprzednia oferta to sprawdzamy czy nie jest większa lub równa od tego co user chce zalicytowac.
-            {
+            if (isset($lastOffer)) {//jeśli istnieje poprzednia oferta to sprawdzamy czy nie jest większa lub równa od tego co user chce zalicytowac.
                 if ($offer->getPrice() <= $lastOffer->getPrice())
                 {
                     $this->addFlash("error", "Your offer should be greater than the previous highest offer.");
@@ -76,7 +74,6 @@ class OfferController extends Controller
 
                     return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]);
                 }
-
             }
 
             $offer
@@ -87,9 +84,9 @@ class OfferController extends Controller
             $entityManager->flush();
 
             $this->addFlash("success", "You bid auction: {$auction->getTitle()}. Your offer is: {$offer->getPrice()}zł.");
+        } else {
+            $this->addFlash("error", "Biding is aborted. Auction: {$auction->getTitle()}.");
         }
-
-        $this->addFlash("error", "Biding is aborted. Auction: {$auction->getTitle()}.");
 
         return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]);
     }
