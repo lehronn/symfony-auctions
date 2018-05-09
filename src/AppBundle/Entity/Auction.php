@@ -43,6 +43,8 @@ class Auction
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Assert\NotBlank(message="Description is required.")
+     * @Assert\Length(min=10, minMessage="Description should have 10 chars, or more.")
      */
     private $description;
 
@@ -50,6 +52,8 @@ class Auction
      * @var float
      *
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2)
+     * @Assert\NotBlank(message="Price is required.")
+     * @Assert\GreaterThan(value=0, message="Price should greater than 0.")
      */
     private $price;
 
@@ -57,6 +61,8 @@ class Auction
      * @var float
      *
      * @ORM\Column(name="starting_price", type="decimal", precision=10, scale=2)
+     * @Assert\NotBlank(message="Starting price is required.")
+     * @Assert\GreaterThan(value=0, message="Starting price should greater than 0.")
      */
     private $startingPrice;
 
@@ -80,6 +86,8 @@ class Auction
      * @var \DateTime
      *
      * @ORM\Column(name="expires_at", type="datetime")
+     * @Assert\NotBlank(message="This date is required.")
+     * @Assert\GreaterThan(value="+1 day", message="Auction should haave min. one day before expired.")
      */
     private $expiresAt;
 
