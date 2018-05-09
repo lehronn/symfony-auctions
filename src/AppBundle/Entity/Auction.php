@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Auction
@@ -31,6 +32,10 @@ class Auction
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=255)
+     *
+     * @Assert\NotBlank(message="Title is required.")
+     * @Assert\Length(min=3, max=16, minMessage="Title should have 3 chars, or more.", maxMessage="Title should have max 16 chars!")
+     *
      */
     private $title;
 

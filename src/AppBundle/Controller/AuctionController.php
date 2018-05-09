@@ -92,18 +92,22 @@ class AuctionController extends Controller
 		{
 			$form->handleRequest($request); //to co przyszło przez $request z POST zostaje wstawione do formularza
 
-			$auction->setStatus(Auction::STATUS_ACTIVE);
+			if($form->isValid())
+			{
+				$auction->setStatus(Auction::STATUS_ACTIVE);
 
-			//zapis danych
-			$entityManager = $this->getDoctrine()->getManager();
-			$entityManager->persist($auction); //zapisz obiekt $auction.
-			$entityManager->flush(); //zapis do bazy danych.
+				//zapis danych
+				$entityManager = $this->getDoctrine()->getManager();
+				$entityManager->persist($auction); //zapisz obiekt $auction.
+				$entityManager->flush(); //zapis do bazy danych.
 
-			$this->addFlash("success", "Auction {$auction->getTitle()} is added.");
+				$this->addFlash("success", "Auction {$auction->getTitle()} is added.");
 
-			return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]); //po zapisie danych z formularza przekierowanie na stronę ze szczegółami aukcji po ID.
+				return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]); //po zapisie danych z formularza przekierowanie na stronę ze szczegółami aukcji po ID.
+			}
+
+			$this->addFlash("error", "Auction {$auction->getTitle()} isn`t added! Error.");
 		}
-
 
 		return $this->render("Auction/add.html.twig", ["form" => $form->createView()]);
 	}
