@@ -99,6 +99,8 @@ class AuctionController extends Controller
 			$entityManager->persist($auction); //zapisz obiekt $auction.
 			$entityManager->flush(); //zapis do bazy danych.
 
+			$this->addFlash("success", "Auction {$auction->getTitle()} is added.");
+
 			return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]); //po zapisie danych z formularza przekierowanie na stronę ze szczegółami aukcji po ID.
 		}
 
@@ -125,6 +127,8 @@ class AuctionController extends Controller
 			// $entityManager = persist($auction); z tą linijką nie działa.
 			$entityManager->flush();
 
+			$this->addFlash("success", "Auction {$auction->getTitle()} is edited.");
+
 			return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]);
 		}
 
@@ -143,6 +147,8 @@ class AuctionController extends Controller
 		$entityManager = $this->getDoctrine()->getManager();
 		$entityManager->remove($auction);
 		$entityManager->flush();
+
+		$this->addFlash("success", "Auction {$auction->getTitle()} is deleted.");
 
 		return $this->redirectToRoute("auction_index");
 	}
@@ -163,6 +169,8 @@ class AuctionController extends Controller
 		$entityManager = $this->getDoctrine()->getManager();
 		$entityManager->persist($auction);
 		$entityManager->flush();
+
+		$this->addFlash("success", "Auction {$auction->getTitle()} is finished.");
 
 		return $this->redirectToRoute("auction_details", ["id" => $auction->getId()]);
 	}

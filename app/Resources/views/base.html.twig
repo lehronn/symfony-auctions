@@ -21,11 +21,16 @@
         </div>
         <hr />
         <div class="container">
+            {% for message in app.flashes("success") %}
+                <div class="alert alert-success" role="alert">{{ message }}</div>
+            {% endfor %}
+        </div>
+        <div class="container">
             {% block body %}{% endblock %}
-            {% block javascripts %}{% endblock %}
         </div>
         <div class="container">
             <p class="text-center">Copyright 2018</p>
         </div>
+        {% block javascripts %}{% endblock %}
     </body>
 </html>
