@@ -106,6 +106,13 @@ class Auction
     private $offers;
 
     /**
+     * @var User
+     *
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="auction") //wiele aukcji do jednego użytkownika, odwócone polem auctions.
+     */
+    private $owner;
+
+    /**
      * Auction constructor.
      */
     public function __construct()
@@ -332,5 +339,13 @@ class Auction
         $this->offers[] = $offer;
 
         return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }
