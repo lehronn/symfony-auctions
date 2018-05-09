@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 //klasa tworząca formularz dodawania aukcji.
 class AuctionType extends AbstractType
 {
-	
+
 	/**
 	* @param FormBuilderInterface $builder
 	* @param array                $options
@@ -27,7 +27,7 @@ class AuctionType extends AbstractType
 			->add("description", TextareaType::class, ["label"=>"Discription"])
 			->add("price", NumberType::class, ["label"=>"Price"])
 			->add("startingPrice", NumberType::class, ["label"=>"Starting price"])
-			->add("expiresAt", DateTimeType::class, ["label"=>"Expires at"])
+			->add("expiresAt", DateTimeType::class, ["label"=>"Expires at", "data"=>new  \DateTime("+1 day +20 minutes")])
 			->add("submit", SubmitType::class, ["label"=>"Dodaj"]);
 	}
 

@@ -11,6 +11,7 @@ use AppBundle\Form\AuctionType;
 use AppBundle\Form\BidType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\FormError;
 use AppBundle\Service\DateService;
 
 class AuctionController extends Controller
@@ -91,6 +92,12 @@ class AuctionController extends Controller
 		if($request->isMethod("post"))
 		{
 			$form->handleRequest($request); //to co przyszło przez $request z POST zostaje wstawione do formularza
+
+			if($auction->getStartingPrice() >= $auction->getPrice())
+			{
+				$form->get("startingPrice") //pobieramy pole startingPrice w formularzu.
+					->addError(new FormError("Price shoud be greater than starting price.")); //i dodajemy do pola error
+			}
 
 			if($form->isValid())
 			{
