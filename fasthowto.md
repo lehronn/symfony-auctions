@@ -91,5 +91,6 @@ Gdyby były problemy z nieznanym csrf to też przepisz config z filmiku, różni
 Gdyby był problem z nieznalezioną encją zamień w pliku User.php import na:
 ""FOS\UserBundle\Model\User"" i tak dalej reszta jest ok...as baseUser czy coś takiego
 
-
+Można pewne rzeczy z FOSUserBundle robi przez konsolę, sprwadź komendy wpisując:
+php bin/console fos
 OGARNĄĆ JAK DZIAŁA PARAM CONVERTER

@@ -342,6 +342,18 @@ class Auction
     }
 
     /**
+     * @param User $owner
+     *
+     * @return $this
+     */
+    public function setOwner(User $owner)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
      * @return User
      */
     public function getOwner()

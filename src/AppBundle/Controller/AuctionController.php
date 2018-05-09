@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Auction;
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormError;
 use AppBundle\Service\DateService;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class AuctionController extends Controller
 {
@@ -133,6 +135,13 @@ class AuctionController extends Controller
 	*/
 	public function editAction(Request $request, Auction $auction)
 	{
+		$this->denyAccessUnlessGranted("ROLE_USER");
+
+		if ($this->getUser() !== $auction->getOwner()) //jeśli nie jesteś właścicielem aukcji to jej nie zedytujesz.
+		{
+			throw new AccessDeniedException();
+		}
+
 		$form= $this->createForm(AuctionType::class, $auction);
 
 		if($request->isMethod("post")) {
@@ -159,6 +168,13 @@ class AuctionController extends Controller
 	*/
 	public function deleteAction(Auction $auction)
 	{
+		$this->denyAccessUnlessGranted("ROLE_USER");
+
+		if ($this->getUser() !== $auction->getOwner()) //jeśli nie jesteś właścicielem aukcji to jej nie usuniesz.
+		{
+			throw new AccessDeniedException();
+		}
+
 		$entityManager = $this->getDoctrine()->getManager();
 		$entityManager->remove($auction);
 		$entityManager->flush();
@@ -177,6 +193,13 @@ class AuctionController extends Controller
 	*/
 	public function finishAction(Auction $auction)
 	{
+		$this->denyAccessUnlessGranted("ROLE_USER");
+
+		if ($this->getUser() !== $auction->getOwner()) //jeśli nie jesteś właścicielem aukcji to jej nie zakończysz.
+		{
+			throw new AccessDeniedException();
+		}
+
 		$auction
 			->setExpiresAt(new \DateTime())
 			->setStatus(Auction::STATUS_FINISHED);
