@@ -18,15 +18,19 @@
 					</li>
 				</ul>
 			</p>
-			<a href="{{ url('auction_index') }}" class="btn btn-primary float-left">Back</a>
+			<a href="{{ url('my_auction_index') }}" class="btn btn-primary float-left">Back</a>
+			<a href="{{ url('auction_edit', {id: auction.id}) }}" class="btn btn-info float-left">Edit</a>
+			{{ form_start (deleteForm, {"attr": {"class":"float-left"}}) }}
+				{{ form_widget(deleteForm.submit, {"attr": {"class":"btn-danger"}}) }}
+				{{form_rest(deleteForm) }}
+			{{ form_end (deleteForm) }}
 
-			{{ form_start (buyForm, {"attr": {"class":"float-left"}}) }}
-				{{ form_widget(buyForm.submit, {"attr": {"class":"btn-success"}}) }}
-				{{form_rest(buyForm) }}
-			{{ form_end (buyForm) }}
+			{{ form_start (finishForm, {"attr": {"class":"float-left"}}) }}
+				{{ form_widget(finishForm.submit, {"attr": {"class":"btn-warning"}}) }}
+				{{form_rest(finishForm) }}
+			{{ form_end (finishForm) }}
+
 			<div class=clearfix></div>
-			<h5>Call</h5>
-			{{ form(bidForm, {"attr":{"novalidate":"novalidate"}}) }}
 
 			<h5>Offers</h5>
 				<ul>

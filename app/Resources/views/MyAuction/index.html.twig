@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>My Auctions list:</h1>
+	{% for auction in auctions %}
+	<div class="card">
+		<h5 class="card-header">
+			<a href="{{ url("my_auction_details", {"id": auction.id}) }}">{{ auction.title }}</a></h5>
+		<div class="card-body">
+			<p class="card-text">
+				<ul>
+					<li class="list-group-item"><strong>Buy now price: {{ auction.price }}zł.</strong></li>
+					<li class="list-group-item">Auction expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
+				</ul>
+			</p>
+			<a href="{{ url("my_auction_details", {"id": auction.id}) }}" class="btn btn-outline-primary">Details</a>
+		</div>
+
+	{% else %}
+	<div class="card">
+		<h5 class="card-header">No found any active auctions.</h5>
+	</div>
+	{% endfor %}
+
+{% endblock %}
