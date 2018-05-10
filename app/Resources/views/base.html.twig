@@ -10,14 +10,11 @@
     </head>
     <body>
         <div class="container">
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="{{url("auction_index")}}">Auctions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{url("my_auction_add")}}">Add auctions</a>
-                </li>
-            </ul>
+            {% if is_granted("ROLE_USER") %}
+                {% include("menuAuthenticated.html.twig") %}
+            {% else %}
+                {% include("menuAnonymous.html.twig") %}
+            {% endif %}
         </div>
         <hr />
         <div class="container">

@@ -93,4 +93,8 @@ Gdyby był problem z nieznalezioną encją zamień w pliku User.php import na:
 
 Można pewne rzeczy z FOSUserBundle robi przez konsolę, sprwadź komendy wpisując:
 php bin/console fos
+
+
+
 OGARNĄĆ JAK DZIAŁA PARAM CONVERTER
+metoda flush() na entityManagerze zapisuje zmiany na encjach do bazy danych
