@@ -95,6 +95,8 @@ Można pewne rzeczy z FOSUserBundle robi przez konsolę, sprwadź komendy wpisuj
 php bin/console fos
 
 
+php bin/console cache:clear czyści chace całej aplikacji
+
 
 OGARNĄĆ JAK DZIAŁA PARAM CONVERTER
 metoda flush() na entityManagerze zapisuje zmiany na encjach do bazy danych
