@@ -28,7 +28,7 @@ class AuctionType extends AbstractType
 			->add("price", NumberType::class, ["label"=>"Price"])
 			->add("startingPrice", NumberType::class, ["label"=>"Starting price"])
 			->add("expiresAt", DateTimeType::class, ["label"=>"Expires at", "data"=>new  \DateTime("+1 day +20 minutes")])
-			->add("submit", SubmitType::class, ["label"=>"Dodaj"]);
+			->add("submit", SubmitType::class, ["label"=>"Save"]);
 	}
 
 	/**
