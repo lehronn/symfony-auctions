@@ -20,6 +20,8 @@ class OfferController extends Controller
     */
     public function buyAction(Auction $auction)
     {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+
         $offer = new Offer(); //tworzysz nową ofertę
         $offer
             ->setAuction($auction)
@@ -50,6 +52,8 @@ class OfferController extends Controller
     */
     public function bidAction(Request $request, Auction $auction)
     {
+        $this->denyAccessUnlessGranted("ROLE_USER");
+        
         $offer = new Offer();
         $bidForm = $this->createForm(BidType::class, $offer);
 

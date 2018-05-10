@@ -20,13 +20,18 @@
 			</p>
 			<a href="{{ url('auction_index') }}" class="btn btn-primary float-left">Back</a>
 
-			{{ form_start (buyForm, {"attr": {"class":"float-left"}}) }}
-				{{ form_widget(buyForm.submit, {"attr": {"class":"btn-success"}}) }}
-				{{form_rest(buyForm) }}
-			{{ form_end (buyForm) }}
+			{% if is_granted("ROLE_USER") %}
+				{{ form_start (buyForm, {"attr": {"class":"float-left"}}) }}
+					{{ form_widget(buyForm.submit, {"attr": {"class":"btn-success"}}) }}
+					{{form_rest(buyForm) }}
+				{{ form_end (buyForm) }}
+			{% endif %}
+
 			<div class=clearfix></div>
-			<h5>Call</h5>
-			{{ form(bidForm, {"attr":{"novalidate":"novalidate"}}) }}
+			{% if is_granted("ROLE_USER") %}
+				<h5>Call</h5>
+				{{ form(bidForm, {"attr":{"novalidate":"novalidate"}}) }}
+			{% endif %}
 
 			<h5>Offers</h5>
 				<ul>
@@ -35,6 +40,9 @@
 					{% endfor %}
 				</ul>
 		</div>
+		{% if not is_granted("ROLE_USER") %}
+			<div class="alert alert-info" role="alert">If You want buying or bid auction, please log in.</div>
+		{% endif %}
 	</div>
 
 {% endblock %}
