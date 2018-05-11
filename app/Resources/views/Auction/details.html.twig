@@ -13,7 +13,7 @@
 				<li class="list-group-item">auction ID: {{ auction.id }}</li>
 				<li class="list-group-item">Buy now price: {{ auction.price }}zł.</li>
 				<li class="list-group-item">Starting price: {{ auction.startingPrice }}zł.</li>
-				<li class="list-group-item">Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
+				<li class="list-group-item">{{ auction.expiresAt | expireDate }}</li> <!--filtr z AppBundle/DateExtension.php -->
 			</ul>
 
 			{% if is_granted("ROLE_USER") %}

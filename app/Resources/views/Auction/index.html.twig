@@ -2,9 +2,10 @@
 
 {% block body %}
 	<h1>Auctions list:</h1>
+
 	{% for auction in auctions %}
-	<div class="card">
-		<h5 class="card-header"><a href="{{ url("auction_details", {"id": auction.id}) }}">{{ auction.title }}</a></h5>
+	<div class="card {{ auctionStyle(auction.expiresAt) }}">
+		<h5 class="card-header {{ auctionStyle(auction.expiresAt) }}"><a href="{{ url("auction_details", {"id": auction.id}) }}">{{ auction.title }}</a></h5>
 		<div class="card-body">
 			<p class="card-text">
 				<ul>
@@ -12,11 +13,8 @@
 					<li class="list-group-item">Auction expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
 				</ul>
 			</p>
-			<a href="{{ url("auction_details", {"id": auction.id}) }}" class="btn btn-outline-primary">Details</a>
+			<a href="{{ url("auction_details", {"id": auction.id}) }}" class="btn btn-primary">Details</a>
 		</div>
-
-
-
 
 	{% else %}
 	<div class="card">
