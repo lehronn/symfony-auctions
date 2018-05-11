@@ -47,7 +47,7 @@ class AuctionController extends Controller
 
 		$buyForm = $this->createFormBuilder()
 		->setAction($this->generateUrl("offer_buy", ["id" => $auction->getId()]))
-		->add("submit", SubmitType::class, ["label" => "Buy"])
+		->add("submit", SubmitType::class, ["label" => "Buy now"])
 		->getForm();
 
 		$bidForm = $this->createForm

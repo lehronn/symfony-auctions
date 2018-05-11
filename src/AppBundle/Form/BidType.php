@@ -19,7 +19,7 @@ class BidType extends AbstractType
     {
         $builder
             ->add("price", NumberType::class, ["label" => "Price"])
-            ->add("submit", SubmitType::class, ["label" => "Bid"]);
+            ->add("submit", SubmitType::class, ["label" => "Bid offer"]);
     }
 
     /**

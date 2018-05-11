@@ -5,41 +5,49 @@
 	<div class="card">
 		<h5 class="card-header">{{ auction.title }}</h5>
 		<div class="card-body">
-			<p class="card-text">
-				<h5>Auction</h5>
-				<ul>
-					<li class="list-group-item">auction ID: {{ auction.id }}</li>
-					<li class="list-group-item">Buy now price: {{ auction.price }}zł.</li>
-					<li class="list-group-item">Starting price: {{ auction.startingPrice }}zł.</li>
-					<li class="list-group-item">Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
-					<li class="list-group-item">
-						<h6>Description:</h6>
-						<p class="card-text">{{ auction.description }}</p>
-					</li>
-				</ul>
-			</p>
-			<a href="{{ url('auction_index') }}" class="btn btn-primary float-left">Back</a>
+			<ul style="padding-left: 0px">
+				<li class="list-group-item">
+					<h6>Description:</h6>
+					<p class="card-text">{{ auction.description }}</p>
+				</li>
+				<li class="list-group-item">auction ID: {{ auction.id }}</li>
+				<li class="list-group-item">Buy now price: {{ auction.price }}zł.</li>
+				<li class="list-group-item">Starting price: {{ auction.startingPrice }}zł.</li>
+				<li class="list-group-item">Auction will expired: {{ auction.expiresAt | date("d.m.Y H:i") }}.</li>
+			</ul>
 
 			{% if is_granted("ROLE_USER") %}
-				{{ form_start (buyForm, {"attr": {"class":"float-left"}}) }}
-					{{ form_widget(buyForm.submit, {"attr": {"class":"btn-success"}}) }}
-					{{form_rest(buyForm) }}
-				{{ form_end (buyForm) }}
+				<div class="card" style="margin: 20px 0 20px 0">
+					<div class="card-body">
+						<div class="input-group">
+						{{ form_start (buyForm, {"attr": {"class":"float-left", "style":"padding-right: 35px"}}) }}
+							{{ form_widget(buyForm.submit, {"attr": {"class":"btn-success float-right"}}) }}
+							{{form_rest(buyForm) }}
+						{{ form_end (buyForm) }}
+							{{ form_start(bidForm, {"attr":{"novalidate":"novalidate", "class":"float-left"}}) }}
+							<div class="input-group">
+								{{form_widget(bidForm.price) }}
+									<span class="input-group-btn">
+										{{form_widget(bidForm.submit) }}
+									</span>
+							</div>
+							{{form_rest(bidForm) }}
+							{{ form_end (bidForm) }}
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
 			{% endif %}
 
-			<div class=clearfix></div>
-			{% if is_granted("ROLE_USER") %}
-				<h5>Call</h5>
-				{{ form(bidForm, {"attr":{"novalidate":"novalidate"}}) }}
-			{% endif %}
-
-			<h5>Offers</h5>
-				<ul>
-					{% for offer in auction .offers %}
-						<li class="list-group-item">Offer price: {{offer.price}}zł, date: {{offer.createdAt |  date("d.m.Y H:i") }}.  </li>
-					{% endfor %}
-				</ul>
+			<ul style="padding-left: 0px; padding-top: 20px">
+				{% for offer in auction .offers %}
+					<li class="list-group-item">Offer price: {{offer.price}}zł, date: {{offer.createdAt |  date("d.m.Y H:i") }}.  </li>
+				{% endfor %}
+			</ul>
+			<a href="{{ url('auction_index') }}" class="btn btn-primary">Back</a>
 		</div>
+
+
 		{% if not is_granted("ROLE_USER") %}
 			<div class="alert alert-info" role="alert">If You want buying or bid auction, please log in.</div>
 		{% endif %}
